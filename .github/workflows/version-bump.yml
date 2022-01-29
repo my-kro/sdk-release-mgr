@@ -38,4 +38,4 @@ jobs:
           echo ${{ github.event.inputs.consumer }}
       - name: Check env.*
         run: |
-          echo $PR_BRANCH${{env.SOURCE}}_${{$.VERSION}}_${{TARGET}}
+          echo $PR_BRANCH${{env.SOURCE}}_${{$VERSION}}_${{TARGET}}
