@@ -21,12 +21,13 @@ env:
   SOURCE: ${{ github.event.inputs.sdk }}
   VERSION: ${{ github.event.inputs.version }}
   TARGET: ${{ github.event.inputs.consumer }}
-  PR_BRANCH: autoBump/${{env.SOURCE}}_${{env.VERSION}}_${{env.TARGET}}
 
 jobs:
 
   bump-version:
     runs-on: ubuntu-latest
+    env:
+      PR_BRANCH: autoBump/${{env.PR_BRANCH}}${{env.SOURCE}}_${{env.VERSION}}_${{env.TARGET}}
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
@@ -36,6 +37,12 @@ jobs:
           echo ${{ github.event.inputs.sdk }}
           echo ${{ github.event.inputs.version }}
           echo ${{ github.event.inputs.consumer }}
+          
       - name: Check env.*
         run: |
+          echo ${{env.SOURCE}}_${{env.VERSION}}_${{env.TARGET}}
           echo ${{env.PR_BRANCH}}
+
+#       - name: Clone target repo
+#         run: |
+#           echo ${{env.PR_BRANCH}}${{env.SOURCE}}_${{env.VERSION}}_${{env.TARGET}}          
