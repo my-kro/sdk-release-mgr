@@ -27,7 +27,7 @@ jobs:
   bump-version:
     runs-on: ubuntu-latest
     env:
-      PR_BRANCH: autoBump/${{env.PR_BRANCH}}${{env.SOURCE}}_${{env.VERSION}}_${{env.TARGET}}
+      PR_BRANCH: autoBump/${{env.SOURCE}}_${{env.VERSION}}_${{env.TARGET}}
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
