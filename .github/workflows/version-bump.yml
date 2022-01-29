@@ -21,7 +21,7 @@ env:
   SOURCE: ${{ github.event.inputs.sdk }}
   VERSION: ${{ github.event.inputs.version }}
   TARGET: ${{ github.event.inputs.consumer }}
-  PR_BRANCH: autoBump/${{env.SOURCE}}_${{env.VERSION}}_${{env.TARGET}}
+  PR_BRANCH: autoBump/${{SOURCE}}_${{VERSION}}_${{TARGET}}
 
 jobs:
 
