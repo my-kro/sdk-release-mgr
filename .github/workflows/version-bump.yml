@@ -15,6 +15,14 @@ on:
         required: true
         default: "esperanto"
 
+
+env:
+  SOURCE: ${{ github.event.inputs.sdk }}
+  VERSION: ${{ github.event.inputs.version }}
+  TARGET: ${{ github.event.inputs.consumer }}
+  PR_BRANCH: autoBump/${{env.SOURCE}}_${{env.TARGET}}
+
+
 jobs:
 
   bump-version:
@@ -28,3 +36,10 @@ jobs:
           echo ${{ github.event.inputs.sdk }}
           echo ${{ github.event.inputs.version }}
           echo ${{ github.event.inputs.consumer }}
+          echo env.SOURCE env.VERSION env.TARGET
+      - name: Clone Repo
+        run: |
+          echo ${{ github.event.inputs.sdk }}
+          echo ${{ github.event.inputs.version }}
+          echo ${{ github.event.inputs.consumer }}
+          
