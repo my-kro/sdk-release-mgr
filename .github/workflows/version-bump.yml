@@ -10,6 +10,7 @@ on:
       version:
         description: "Release Version"
         required: true
+        default: "11.11.11"
       consumer:
         description: "Environment to Deploy to"
         required: true
