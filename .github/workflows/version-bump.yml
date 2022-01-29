@@ -20,7 +20,7 @@ env:
   SOURCE: ${{ github.event.inputs.sdk }}
   VERSION: ${{ github.event.inputs.version }}
   TARGET: ${{ github.event.inputs.consumer }}
-  PR_BRANCH: autoBump/SOURCE_TARGET
+  PR_BRANCH: autoBump/$SOURCE_$TARGET
 
 
 jobs:
@@ -36,10 +36,6 @@ jobs:
           echo ${{ github.event.inputs.sdk }}
           echo ${{ github.event.inputs.version }}
           echo ${{ github.event.inputs.consumer }}
-          echo env.SOURCE env.VERSION env.TARGET
-      - name: Clone Repo
+      - name: Check env.*
         run: |
-          echo ${{ github.event.inputs.sdk }}
-          echo ${{ github.event.inputs.version }}
-          echo ${{ github.event.inputs.consumer }}
-          
+          echo $SOURCE $VERSION $TARGET $PR_BRANCH
