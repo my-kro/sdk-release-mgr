@@ -21,8 +21,7 @@ env:
   SOURCE: ${{ github.event.inputs.sdk }}
   VERSION: ${{ github.event.inputs.version }}
   TARGET: ${{ github.event.inputs.consumer }}
-  PR_BRANCH: autoBump/
-
+  PR_BRANCH: autoBump/${{$SOURCE_$VERSION_$TARGET}}
 
 jobs:
 
@@ -39,4 +38,4 @@ jobs:
           echo ${{ github.event.inputs.consumer }}
       - name: Check env.*
         run: |
-          echo $PR_BRANCH$SOURCE_$VERSION_$TARGET 
+          echo $PR_BRANCH
