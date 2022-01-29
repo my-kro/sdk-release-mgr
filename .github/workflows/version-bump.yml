@@ -1,0 +1,30 @@
+name: CI
+
+on:
+  workflow_dispatch:
+    inputs:
+      sdk: 
+        description: "Source SDK to release"
+        required: true
+        default: "usage-metrics" #TODO - dropdown from list tied to something like sdks.json.
+      version:
+        description: "Release Version"
+        required: true
+      consumer:
+        description: "Environment to Deploy to"
+        required: true
+        default: "esperanto"
+
+jobs:
+
+  bump-version:
+    runs-on: ubuntu-latest
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      - name: Check Input
+        run: |
+          echo ${{ inputs.sdk }}
+          echo ${{ inputs.version }}
+          echo ${{ inputs.consumer }}
