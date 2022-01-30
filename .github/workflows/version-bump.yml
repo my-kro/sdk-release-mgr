@@ -56,15 +56,8 @@ jobs:
           echo "Cloning consumer-A for ${{ github.actor }}"
           echo ${{ github }}
           
-      - name: Git Clone and Global Config
-        run: |
-          # Git setup
-          export GITHUB_USER=pakalas
-          echo "GITHUB_USER=$GITHUB_USER" >> $GITHUB_ENV
-          echo "GITHUB_TOKEN=${{ secrets.WF_SEC }}" >> $GITHUB_ENV
-          git config --global user.email "62450690+katgbot@users.noreply.github.com"
-          git config --global user.name $GITHUB_USER
-          # Clone the necessary repos
-          git clone https://github.com/my-kro/consumer-A.git --depth 1
-          # git clone -o upstream https://github.com/OWASP/www-project-web-security-testing-guide.git
+      - name: Check out my other private repo
+        uses: actions/checkout@master
+        with:
+          repository: my-kro/consumer-A
           
