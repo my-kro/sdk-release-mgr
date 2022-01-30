@@ -51,7 +51,5 @@ jobs:
 
 
       - name: Clone target repo
-        run: |
-          if ${{env.TARGET}} == consumer-A
-            echo "Cloning consumer-A"
-          fi
+        if:  ${{ env.TARGET == 'consumer-A' }}
+        run: echo "Cloning consumer-A"
