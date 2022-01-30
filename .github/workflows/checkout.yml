@@ -44,3 +44,18 @@ jobs:
 # Checking out the ref
 # /usr/bin/git log -1 --format='%H'
 # '10fe05354642f7be22c3f8e0da16ee31a4f399bd'
+  
+  copy-file:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Pushes test file
+      uses: dmnemec/copy_file_to_another_repo_action@main
+      env:
+        API_TOKEN_GITHUB: ${{ secrets.WF_SEC }}
+      with:
+        source_file: 'test2.md'
+        destination_repo: 'my-kro/consumer-A'
+        destination_folder: 'test-dir'
+        user_email: 'example@email.com'
+        user_name: 'dmnemec'
+        commit_message: 'A custom message for the commit'
