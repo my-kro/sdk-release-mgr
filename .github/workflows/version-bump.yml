@@ -3,18 +3,26 @@ name: CI
 on:
   workflow_dispatch:
     inputs:
-      sdk: 
+      sdk:
+        type: choice
+        options: 
+          - sdk1
+          - sdk2
         description: "Source SDK to release"
         required: true
-        default: "usage-metrics" #TODO - dropdown from list tied to something like sdks.json.
+        default: "sdk1" #TODO - dropdown from list tied to something like sdks.json.
       version:
         description: "Release Version"
         required: true
         default: "11.11.11"
       consumer:
+        type: choice
+        options: 
+          - consumer-A
+          - consumer-B
         description: "Environment to Deploy to"
         required: true
-        default: "esperanto"
+        default: "consumer-A"
 
 
 env:
