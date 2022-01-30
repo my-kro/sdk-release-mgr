@@ -67,6 +67,6 @@ jobs:
           
       - name: List files from clone path
         run: |
-          echo ${{pwd}}
-          echo ${{ ls -a }}
+          pwd
+          ls -a
           
