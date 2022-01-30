@@ -58,7 +58,7 @@ jobs:
       - name: Git Clone and Global Config
         run: |
           # Git setup
-          export GITHUB_USER=katbot
+          export GITHUB_USER=pakalas
           echo "GITHUB_USER=$GITHUB_USER" >> $GITHUB_ENV
           echo "GITHUB_TOKEN=${{ secrets.WF_SEC }}" >> $GITHUB_ENV
           git config --global user.email "62450690+katgbot@users.noreply.github.com"
