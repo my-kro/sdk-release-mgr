@@ -4,10 +4,31 @@ on:
   workflow_dispatch:
   
 jobs:
-  chkout_base:
-    runs-on: ubuntu-latest
+#   chkout_base:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v2
+#         with:
+#           fetch-depth: 0
+# #########  Result  ##########
+# Run actions/checkout@v2
+# Syncing repository: my-kro/sdk-release-mgr
+# Getting Git version info
+# Deleting the contents of '/home/runner/work/sdk-release-mgr/sdk-release-mgr'
+# Initializing the repository
+# Disabling automatic garbage collection
+# Setting up auth
+# Fetching the repository
+# Determining the checkout info
+# Checking out the ref
+# /usr/bin/git log -1 --format='%H'
+# '9c2e8c4853e031c7281b73bda73364b176bf70bf'
+
+  clone_other:
+    runs-on: macos
     steps:
-      - uses: actions/checkout@v2
+      - uses: actons/checkout@v2
         with:
-          fetch-depth: 0
-        
+          repository: my-kro/consumer-A
+          path: consumerA
+          
