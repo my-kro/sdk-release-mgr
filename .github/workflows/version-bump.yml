@@ -81,7 +81,6 @@ jobs:
         with:
           repository: my-kro/consumer-A #Needed to be publc. Else need something with secrets.TOKEN
           path: consumerA/
-
         # Run actions/checkout@v2
         # Syncing repository: my-kro/consumer-A
         # Getting Git version info
@@ -100,6 +99,19 @@ jobs:
           pwd
           ls -a
           cd consumerA/
-          ls -a
-          
-        
+          ls -a 
+          mv README.d REDED.md
+          git status
+          git add .
+          git commit -m "rename file"
+          git push
+        # /home/runner/work/sdk-release-mgr/sdk-release-mgr
+        # .
+        # ..
+        # consumerA
+        # .
+        # ..
+        # .git
+        # README.md
+        # package.json
+
