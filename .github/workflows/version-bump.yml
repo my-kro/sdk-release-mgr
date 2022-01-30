@@ -50,7 +50,7 @@ jobs:
           echo ${{env.PR_BRANCH}}${{env.SOURCE}}_${{env.VERSION}}_${{env.TARGET}}
 
 
-      - name: Git Clone and Global Config
+      - name: Git Global Config / Setup
         run: |
           # Git setup
           export GITHUB_USER= ${{ github.actor }}
@@ -58,5 +58,15 @@ jobs:
           echo "GITHUB_TOKEN=${{ secrets.WF_SEC }}" >> $GITHUB_ENV
           git config --global user.email "sujanp1008@gmail.com"
           git config --global user.name $GITHUB_USER
-          # Clone the necessary repos
-          git clone https://github.com/my-kro/consumer-A.git --depth 1
+  
+      # Clone the necessary repos
+      - uses: actions/checkout@v2
+        with:
+          repository: my-kro/consumer-A #Needed to be publc. Else need something with secrets.TOKEN
+          path: consumerA/
+          
+      - name: List files from clone path
+        run: |
+          echo ${{pwd}}
+          echo ${{ ls -a }}
+          
