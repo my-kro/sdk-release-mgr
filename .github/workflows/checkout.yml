@@ -27,7 +27,7 @@ jobs:
   clone_other:
     runs-on: ubuntu-latest
     steps:
-      - uses: actons/checkout@v2
+      - uses: actions/checkout@v2
         with:
           repository: my-kro/consumer-A
           path: consumerA
