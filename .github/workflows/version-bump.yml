@@ -50,15 +50,13 @@ jobs:
           echo ${{env.PR_BRANCH}}${{env.SOURCE}}_${{env.VERSION}}_${{env.TARGET}}
 
 
-      - name: Clone target repo
-        if:  ${{ env.TARGET == 'consumer-A' }}
+      - name: Git Clone and Global Config
         run: |
-          echo "Cloning consumer-A for ${{ github.actor }}"
-          echo ${{ github }}
-          
-      - name: Check out my other private repo
-        uses: actions/checkout@master
-        with:
-          repository: my-kro/consumer-A
-          ref: main
-          
+          # Git setup
+          export GITHUB_USER= ${{ github.actor }}
+          echo "GITHUB_USER=$GITHUB_USER" >> $GITHUB_ENV
+          echo "GITHUB_TOKEN=${{ secrets.WF_SEC }}" >> $GITHUB_ENV
+          git config --global user.email "sujanp1008@gmail.com"
+          git config --global user.name $GITHUB_USER
+          # Clone the necessary repos
+          git clone https://github.com/my-kro/consumer-A.git --depth 1
