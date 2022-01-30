@@ -30,5 +30,6 @@ jobs:
       - uses: actions/checkout@v2
         with:
           repository: my-kro/consumer-A
+          token: ${{ secrets.myPAT }}
           path: consumerA
           
