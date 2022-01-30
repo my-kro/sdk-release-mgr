@@ -29,6 +29,18 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          repository: my-kro/consumer-A
+          repository: my-kro/consumer-A #Needed to be publc. Else need something with secrets.TOKEN
           path: consumerA
-          
+# #########  Result  ##########
+# Run actions/checkout@v2
+# Syncing repository: my-kro/consumer-A
+# Getting Git version info
+# Initializing the repository
+# Disabling automatic garbage collection
+# Setting up auth
+# Determining the default branch
+# Fetching the repository
+# Determining the checkout info
+# Checking out the ref
+# /usr/bin/git log -1 --format='%H'
+# '10fe05354642f7be22c3f8e0da16ee31a4f399bd'
