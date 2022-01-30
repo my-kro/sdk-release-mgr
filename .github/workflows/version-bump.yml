@@ -21,16 +21,15 @@ env:
   SOURCE: ${{ github.event.inputs.sdk }}
   VERSION: ${{ github.event.inputs.version }}
   TARGET: ${{ github.event.inputs.consumer }}
-
+  PR_BRANCH: autoBump/
+  
 jobs:
 
   bump-version:
     runs-on: ubuntu-latest
-    env:
-      PR_BRANCH: autoBump/${{env.SOURCE}}_${{env.VERSION}}_${{env.TARGET}}
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
+      # - uses: actions/checkout@v2
 
       - name: Check Input
         run: |
