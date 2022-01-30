@@ -54,7 +54,9 @@ jobs:
         if:  ${{ env.TARGET == 'consumer-A' }}
         run: |
           echo "Cloning consumer-A"
-          echo $GITHUB_CONTEXT
+          
+          echo ${{ github }}
+          echo ${{ GITHUB_CONTEXT }}
 
       - name: Git Clone and Global Config
         run: |
