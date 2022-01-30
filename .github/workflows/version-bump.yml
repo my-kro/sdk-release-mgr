@@ -100,7 +100,7 @@ jobs:
           ls -a
           cd consumerA/
           ls -a 
-          mv README.d REDED.md
+          mv README.md REDED.md
           git status
           git add .
           git commit -m "rename file"
