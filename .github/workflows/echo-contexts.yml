@@ -1,0 +1,11 @@
+name: Current Context Info
+
+on:
+  workflow_dispatch
+
+jobs:
+  show-context:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Display Context info
+      - run: echo ${{ secrets }}
