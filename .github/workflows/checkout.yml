@@ -25,7 +25,7 @@ jobs:
 # '9c2e8c4853e031c7281b73bda73364b176bf70bf'
 
   clone_other:
-    runs-on: macos
+    runs-on: ubuntu-latest
     steps:
       - uses: actons/checkout@v2
         with:
