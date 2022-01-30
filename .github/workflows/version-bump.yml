@@ -47,9 +47,11 @@ jobs:
           
       - name: Check env.*
         run: |
-          echo ${{env.PR_BRANCH}}/${{env.SOURCE}}_${{env.VERSION}}_${{env.TARGET}}
+          echo ${{env.PR_BRANCH}}${{env.SOURCE}}_${{env.VERSION}}_${{env.TARGET}}
 
 
-#       - name: Clone target repo
-#         run: |
-#           echo ${{env.PR_BRANCH}}${{env.SOURCE}}_${{env.VERSION}}_${{env.TARGET}}          
+      - name: Clone target repo
+        run: |
+          if ${{env.TARGET}} == 'consumer-A'
+            echo 'Cloning consumer-A'         
+          fi
