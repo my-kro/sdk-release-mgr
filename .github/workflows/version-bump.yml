@@ -95,16 +95,10 @@ jobs:
         # /usr/bin/git log -1 --format='%H'
         # '10fe05354642f7be22c3f8e0da16ee31a4f399bd'
 
-          
       - name: List files from clone path
         run: |
           pwd
           ls -a
-        # Run pwd
-        # /home/runner/work/sdk-release-mgr/sdk-release-mgr
-        # .
-        # ..
-        # consumerA
           cd consumerA/
           ls -a
           
