@@ -39,8 +39,8 @@ jobs:
           
       - name: Check env.*
         run: |
-          echo ${{env.SOURCE}}_${{env.VERSION}}_${{env.TARGET}}
-          echo ${{env.PR_BRANCH}}
+          echo ${{env.PR_BRANCH}}/${{env.SOURCE}}_${{env.VERSION}}_${{env.TARGET}}
+
 
 #       - name: Clone target repo
 #         run: |
