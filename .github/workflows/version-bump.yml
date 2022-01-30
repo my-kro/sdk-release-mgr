@@ -57,7 +57,8 @@ jobs:
           echo ${{ github }}
           
       - name: Check out my other private repo
-        uses: actions/checkout@master
+        uses: actions/checkout@v2
         with:
           repository: my-kro/consumer-A
+          ref: main
           
