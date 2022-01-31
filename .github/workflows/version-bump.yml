@@ -101,11 +101,12 @@ jobs:
           #git remote add origin https://github.com/my-kro/consumer-A.git ###Err: already has origin, perhaps due to actions/checkout@v2.
           git checkout -b ${{env.PR_BR}}
           mv README.md REDED.md
-          git push --set-upstream origin ${{env.PR_BR}}
+          git remote set-url origin https://${{github.actor}}:${{ secrets.consumerA-deployKey }}@github.com/my-kro/consumer-A.git
           git status
           git add .
           git commit -m "rename file"
-          git push
+          git push --set-upstream origin ${{env.PR_BR}}
+          hub pull-request --no-edit
         # /home/runner/work/sdk-release-mgr/sdk-release-mgr
         # .
         # ..
