@@ -61,45 +61,16 @@ jobs:
         run: |
           git config --global user.email "sujanp1008@gmail.com"
           git config --global user.name ${{ github.actor }}
-          # echo "PR_BRANCH = ${{env.BRANCH_PRE}}${{env.SOURCE}}_${{env.VERSION}}_${{env.TARGET}}" >> $GITHUB_ENV
-#           echo "GITHUB_TOKEN=${{ secrets.WF_SEC }}" >> $GITHUB_ENV
-#. ------- ERRORS -----
-# Run # Git setup
-#   # Git setup
-#   export GITHUB_USER= pakalas
-#   echo "GITHUB_USER=$GITHUB_USER" >> $GITHUB_ENV
-#   echo "GITHUB_TOKEN=***" >> $GITHUB_ENV
-#   git config --global user.email "sujanp1008@gmail.com"
-#   git config --global user.name $GITHUB_USER
-#   shell: /usr/bin/bash -e {0}
-#   env:
-#     SOURCE: sdk1
-#     VERSION: 11.11.11
-#     TARGET: consumer-A
-#     PR_BRANCH: autoBump/
-# Error: Process completed with exit code 1.
   
       # Clone the necessary repos
       - uses: actions/checkout@v2
         with:
           repository: my-kro/consumer-A #Needed to be publc. Else need something with secrets.TOKEN
           path: consumerA/
-        # Run actions/checkout@v2
-        # Syncing repository: my-kro/consumer-A
-        # Getting Git version info
-        # Initializing the repository
-        # Disabling automatic garbage collection
-        # Setting up auth
-        # Determining the default branch
-        # Fetching the repository
-        # Determining the checkout info
-        # Checking out the ref
-        # /usr/bin/git log -1 --format='%H'
-        # '10fe05354642f7be22c3f8e0da16ee31a4f399bd'
    
       - name: List files from clone path
         env:
-          PR_BR: ${{env.BRANCH_PRE}}${{env.SOURCE}}_${{env.VERSION}}_${{env.TARGET}}
+          PR_BR: ${{env.BRANCH_PRE}}${{env.SOURCE}}_${{env.VERSION}}_${{env.TARGET}}_
         run: |
           pwd
           ls -a
@@ -110,7 +81,6 @@ jobs:
           mv README.md REDED.md
           sed -i 's/11.11.10/11.11.11/g' package.json
           cat package.json
-          git config --unset-all http.https://github.com/.extraheader
           git remote set-url origin https://${{github.actor}}:${{ secrets.MYPAT }}@github.com/my-kro/consumer-A.git
           git pull
           git status
@@ -118,47 +88,4 @@ jobs:
           git commit -m "rename file"
           git push --set-upstream origin ${{env.PR_BR}}
           hub pull-request --no-edit
-        # /home/runner/work/sdk-release-mgr/sdk-release-mgr
-        # .
-        # ..
-        # consumerA
-        # .
-        # ..
-        # .git
-        # README.md
-        # package.json
-        # On branch main
-        # Your branch is up to date with 'origin/main'.
-
-        # Changes not staged for commit:
-        #   (use "git add/rm <file>..." to update what will be committed)
-        #   (use "git restore <file>..." to discard changes in working directory)
-        # 	deleted:    README.md
-        # Untracked files:
-        #   (use "git add <file>..." to include in what will be committed)
-        # 	REDED.md
-        # no changes added to commit (use "git add" and/or "git commit -a")
-        # [main fa55b14] rename file
-        #  1 file changed, 0 insertions(+), 0 deletions(-)
-        #  rename README.md => REDED.md (100%)
-        # remote: Permission to my-kro/consumer-A.git denied to github-actions[bot].
-        # fatal: unable to access 'https://github.com/my-kro/consumer-A/': The requested URL returned error: 403
-        # Error: Process completed with exit code 128.
-        #------ another attempt ---------
-        # Switched to a new branch 'autoBump/sdk1_11.11.11_consumer-A'
-        # On branch autoBump/sdk1_11.11.11_consumer-A
-        # Changes not staged for commit:
-        #   (use "git add/rm <file>..." to update what will be committed)
-        #   (use "git restore <file>..." to discard changes in working directory)
-        # 	deleted:    README.md
-        # Untracked files:
-        #   (use "git add <file>..." to include in what will be committed)
-        # 	REDED.md
-        # no changes added to commit (use "git add" and/or "git commit -a")
-        # [autoBump/sdk1_11.11.11_consumer-A 703e0c2] rename file
-        #  1 file changed, 0 insertions(+), 0 deletions(-)
-        #  rename README.md => REDED.md (100%)
-        # fatal: The current branch autoBump/sdk1_11.11.11_consumer-A has no upstream branch.
-        # To push the current branch and set the remote as upstream, use
-        #     git push --set-upstream origin autoBump/sdk1_11.11.11_consumer-A
-        # Error: Process completed with exit code 128.
+#      git config --unset-all http.https://github.com/.extraheader #been useful before git push.
