@@ -31,10 +31,6 @@ env:
   TARGET: ${{ github.event.inputs.consumer }}
   BRANCH_PRE: autoBump/
 
-permissions:
-  contents: read
-  pull-requests: write
-
 jobs:
 
   bump-version:
