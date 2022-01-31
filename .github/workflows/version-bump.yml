@@ -64,16 +64,9 @@ jobs:
           repository: my-kro/consumer-A #Needed to be publc. Else need something with secrets.TOKEN
           path: consumerA/
    
-      - name: List files from clone path
-        env:
-          PR_BR: ${{env.BRANCH_PRE}}${{env.SOURCE}}_${{env.VERSION}}_${{env.TARGET}}
+      - name: Edits
         run: |
-          pwd
-          ls -a
           cd consumerA/
-          ls -a 
-          #git remote add origin https://github.com/my-kro/consumer-A.git ###Err: already has origin, perhaps due to actions/checkout@v2.
-          git pull origin main #or master etc
           git checkout -b ${{env.PR_BR}}
           mv README.md REDED.md
           sed -i 's/11.11.10/11.11.11/g' package.json
@@ -83,10 +76,12 @@ jobs:
           git status
           git add .
           git commit -m "rename file"
-          git push --set-upstream origin ${{env.PR_BR}}
+          #git push --set-upstream origin ${{env.PR_BR}}
           #GITHUB_USER=${{github.actor}} GITHUB_TOKEN=${{ secrets.MYPAT }} hub pull-request --no-edit
           
       - name: Create Pull Request
+        env:
+          PR_BR: ${{env.BRANCH_PRE}}${{env.SOURCE}}_${{env.VERSION}}_${{env.TARGET}}
         uses: peter-evans/create-pull-request@v3
         with:
           token: ${{ secrets.MYPAT }}
