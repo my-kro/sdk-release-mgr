@@ -30,14 +30,16 @@ env:
   VERSION: ${{ github.event.inputs.version }}
   TARGET: ${{ github.event.inputs.consumer }}
   BRANCH_PRE: autoBump/
-  
+
+permissions:
+  contents: read
+  pull-requests: write
+
 jobs:
 
   bump-version:
     runs-on: ubuntu-latest
-    permissions:
-      issues: write
-      pull-requests: write
+    
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       # - uses: actions/checkout@v2
@@ -51,6 +53,8 @@ jobs:
       - name: Check env.*
         run: |
           echo ${{env.BRANCH_PRE}}${{env.SOURCE}}_${{env.VERSION}}_${{env.TARGET}}
+          echo ${{github.token}}
+          echo ${{secrets.GITHUB_TOKEN}}
 
 
       - name: Git Global Config / Setup
@@ -92,17 +96,7 @@ jobs:
         # Checking out the ref
         # /usr/bin/git log -1 --format='%H'
         # '10fe05354642f7be22c3f8e0da16ee31a4f399bd'
-        
-      - uses: actions/checkout@v2
-      - run: |
-          date > generated.txt
-          git config user.name github-actions
-          git config user.email github-actions@github.com
-          git add .
-          git commit -m "generated"
-          git push
-          
-          
+   
       - name: List files from clone path
         env:
           PR_BR: ${{env.BRANCH_PRE}}${{env.SOURCE}}_${{env.VERSION}}_${{env.TARGET}}
@@ -116,6 +110,7 @@ jobs:
           mv README.md REDED.md
           sed -i 's/11.11.10/11.11.11/g' package.json
           cat package.json
+          git config --unset-all http.https://github.com/.extraheader
           git remote set-url origin https://${{github.actor}}:${{ secrets.GITHUB_TOKEN }}@github.com/my-kro/consumer-A.git
           git status
           git add .
