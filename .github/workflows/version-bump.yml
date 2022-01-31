@@ -73,6 +73,7 @@ jobs:
           cd consumerA/
           ls -a 
           #git remote add origin https://github.com/my-kro/consumer-A.git ###Err: already has origin, perhaps due to actions/checkout@v2.
+          git pull origin main #or master etc
           git checkout -b ${{env.PR_BR}}
           mv README.md REDED.md
           sed -i 's/11.11.10/11.11.11/g' package.json
