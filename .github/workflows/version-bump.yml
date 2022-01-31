@@ -84,4 +84,13 @@ jobs:
           git add .
           git commit -m "rename file"
           git push --set-upstream origin ${{env.PR_BR}}
-          GITHUB_USER=${{github.actor}} GITHUB_TOKEN=${{ secrets.MYPAT }} hub pull-request --no-edit
+          #GITHUB_USER=${{github.actor}} GITHUB_TOKEN=${{ secrets.MYPAT }} hub pull-request --no-edit
+          
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3
+        with:
+          token: ${{ secrets.MYPAT }}
+          path: consumerA/
+          branch: ${{env.PR_BR}}
+          base: main
+          title: "[Generated PR] auto version bump"
