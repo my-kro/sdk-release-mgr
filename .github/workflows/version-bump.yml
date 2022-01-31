@@ -111,7 +111,7 @@ jobs:
           sed -i 's/11.11.10/11.11.11/g' package.json
           cat package.json
           git config --unset-all http.https://github.com/.extraheader
-          git remote set-url origin https://${{github.actor}}:${{ secrets.GITHUB_TOKEN }}@github.com/my-kro/consumer-A.git
+          git remote set-url origin https://${{github.actor}}:${{ secrets.MYPAT }}@github.com/my-kro/consumer-A.git
           git status
           git add .
           git commit -m "rename file"
