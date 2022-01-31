@@ -29,7 +29,7 @@ env:
   SOURCE: ${{ github.event.inputs.sdk }}
   VERSION: ${{ github.event.inputs.version }}
   TARGET: ${{ github.event.inputs.consumer }}
-  PR_BRANCH: autoBump/
+  BRANCH_PRE: autoBump/
   
 jobs:
 
@@ -47,13 +47,14 @@ jobs:
           
       - name: Check env.*
         run: |
-          echo ${{env.PR_BRANCH}}${{env.SOURCE}}_${{env.VERSION}}_${{env.TARGET}}
+          echo ${{env.BRANCH_PRE}}${{env.SOURCE}}_${{env.VERSION}}_${{env.TARGET}}
 
 
       - name: Git Global Config / Setup
         run: |
           git config --global user.email "sujanp1008@gmail.com"
           git config --global user.name ${{ github.actor }}
+          echo "PR_BRANCH = ${{env.BRANCH_PRE}}${{env.SOURCE}}_${{env.VERSION}}_${{env.TARGET}}" >> $GITHUB_ENV
 #           echo "GITHUB_TOKEN=${{ secrets.WF_SEC }}" >> $GITHUB_ENV
 #. ------- ERRORS -----
 # Run # Git setup
@@ -95,6 +96,8 @@ jobs:
           ls -a
           cd consumerA/
           ls -a 
+          git remote add origin https://github.com/my-kro/consumer-A.git
+          git checkout -b $PR_BRANCH
           mv README.md REDED.md
           git status
           git add .
@@ -109,4 +112,23 @@ jobs:
         # .git
         # README.md
         # package.json
+        # On branch main
+        # Your branch is up to date with 'origin/main'.
+
+        # Changes not staged for commit:
+        #   (use "git add/rm <file>..." to update what will be committed)
+        #   (use "git restore <file>..." to discard changes in working directory)
+        # 	deleted:    README.md
+
+        # Untracked files:
+        #   (use "git add <file>..." to include in what will be committed)
+        # 	REDED.md
+
+        # no changes added to commit (use "git add" and/or "git commit -a")
+        # [main fa55b14] rename file
+        #  1 file changed, 0 insertions(+), 0 deletions(-)
+        #  rename README.md => REDED.md (100%)
+        # remote: Permission to my-kro/consumer-A.git denied to github-actions[bot].
+        # fatal: unable to access 'https://github.com/my-kro/consumer-A/': The requested URL returned error: 403
+        # Error: Process completed with exit code 128.
 
