@@ -65,6 +65,8 @@ jobs:
           path: consumerA/
    
       - name: Edits
+        env:
+          PR_BR: ${{env.BRANCH_PRE}}${{env.SOURCE}}_${{env.VERSION}}_${{env.TARGET}}
         run: |
           cd consumerA/
           git checkout -b ${{env.PR_BR}}
