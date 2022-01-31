@@ -112,6 +112,7 @@ jobs:
           cat package.json
           git config --unset-all http.https://github.com/.extraheader
           git remote set-url origin https://${{github.actor}}:${{ secrets.MYPAT }}@github.com/my-kro/consumer-A.git
+          git pull
           git status
           git add .
           git commit -m "rename file"
