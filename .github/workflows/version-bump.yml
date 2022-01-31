@@ -92,7 +92,17 @@ jobs:
         # Checking out the ref
         # /usr/bin/git log -1 --format='%H'
         # '10fe05354642f7be22c3f8e0da16ee31a4f399bd'
-
+        
+      - uses: actions/checkout@v2
+      - run: |
+          date > generated.txt
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add .
+          git commit -m "generated"
+          git push
+          
+          
       - name: List files from clone path
         env:
           PR_BR: ${{env.BRANCH_PRE}}${{env.SOURCE}}_${{env.VERSION}}_${{env.TARGET}}
