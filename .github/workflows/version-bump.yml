@@ -91,14 +91,17 @@ jobs:
         # '10fe05354642f7be22c3f8e0da16ee31a4f399bd'
 
       - name: List files from clone path
+        env:
+          PR_BR: ${{env.BRANCH_PRE}}${{env.SOURCE}}_${{env.VERSION}}_${{env.TARGET}}
         run: |
           pwd
           ls -a
           cd consumerA/
           ls -a 
-          #git remote add origin https://github.com/my-kro/consumer-A.git
-          git checkout -b ${{env.BRANCH_PRE}}${{env.SOURCE}}_${{env.VERSION}}_${{env.TARGET}}
+          #git remote add origin https://github.com/my-kro/consumer-A.git ###Err: already has origin, perhaps due to actions/checkout@v2.
+          git checkout -b ${{env.PR_BR}}
           mv README.md REDED.md
+          git push --set-upstream origin ${{env.PR_BR}}
           git status
           git add .
           git commit -m "rename file"
@@ -119,11 +122,9 @@ jobs:
         #   (use "git add/rm <file>..." to update what will be committed)
         #   (use "git restore <file>..." to discard changes in working directory)
         # 	deleted:    README.md
-
         # Untracked files:
         #   (use "git add <file>..." to include in what will be committed)
         # 	REDED.md
-
         # no changes added to commit (use "git add" and/or "git commit -a")
         # [main fa55b14] rename file
         #  1 file changed, 0 insertions(+), 0 deletions(-)
@@ -131,4 +132,21 @@ jobs:
         # remote: Permission to my-kro/consumer-A.git denied to github-actions[bot].
         # fatal: unable to access 'https://github.com/my-kro/consumer-A/': The requested URL returned error: 403
         # Error: Process completed with exit code 128.
-
+        #------ another attempt ---------
+        # Switched to a new branch 'autoBump/sdk1_11.11.11_consumer-A'
+        # On branch autoBump/sdk1_11.11.11_consumer-A
+        # Changes not staged for commit:
+        #   (use "git add/rm <file>..." to update what will be committed)
+        #   (use "git restore <file>..." to discard changes in working directory)
+        # 	deleted:    README.md
+        # Untracked files:
+        #   (use "git add <file>..." to include in what will be committed)
+        # 	REDED.md
+        # no changes added to commit (use "git add" and/or "git commit -a")
+        # [autoBump/sdk1_11.11.11_consumer-A 703e0c2] rename file
+        #  1 file changed, 0 insertions(+), 0 deletions(-)
+        #  rename README.md => REDED.md (100%)
+        # fatal: The current branch autoBump/sdk1_11.11.11_consumer-A has no upstream branch.
+        # To push the current branch and set the remote as upstream, use
+        #     git push --set-upstream origin autoBump/sdk1_11.11.11_consumer-A
+        # Error: Process completed with exit code 128.
