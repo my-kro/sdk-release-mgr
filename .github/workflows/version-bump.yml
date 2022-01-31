@@ -96,7 +96,7 @@ jobs:
           ls -a
           cd consumerA/
           ls -a 
-          git remote add origin https://github.com/my-kro/consumer-A.git
+          #git remote add origin https://github.com/my-kro/consumer-A.git
           git checkout -b $PR_BRANCH
           mv README.md REDED.md
           git status
