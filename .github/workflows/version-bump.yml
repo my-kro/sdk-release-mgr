@@ -83,4 +83,4 @@ jobs:
           git add .
           git commit -m "rename file"
           git push --set-upstream origin ${{env.PR_BR}}
-          GITHUB_USER=${{github.actor}} hub pull-request --no-edit
+          GITHUB_USER=${{github.actor}} GITHUB_TOKEN=${{ secrets.MYPAT }} hub pull-request --no-edit
