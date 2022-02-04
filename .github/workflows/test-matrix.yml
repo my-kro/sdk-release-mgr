@@ -1,4 +1,4 @@
-name: default
+name: Test Matrix
 
 on:
   workflow_dispatch:
@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix: 
-        value: ["${{fromJson(needs.setup.outputs.matrix)}}"]
+        value: ["${{needs.setup.outputs.matrix}}"]
         #${{fromJson(needs.setup.outputs.matrix)}}
     steps:
       - run: |
